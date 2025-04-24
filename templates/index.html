@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GhibliDreams - AI Art Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+    <header class="header">
+        <h1 class="title">GhibliDreams</h1>
+    </header>
+
+    <section class="intro">
+        <h2 class="tagline">Create Magical Worlds in Ghibli Style ✨</h2>
+        <p class="description">Transform your imagination into art.</p>
+    </section>
+
+    <section class="prompt-suggestions">
+        <h3>Sample Prompts to Spark Your Imagination</h3>
+        <div class="prompt-cards">
+            <div class="card">A fox spirit resting under a sakura tree</div>
+            <div class="card">A steampunk city floating in the sky</div>
+            <div class="card">A tiny dragon curled up in a tea cup</div>
+            <div class="card">A rainy street lit by glowing lanterns</div>
+            <div class="card">Children flying on a giant owl above the forest</div>
+        </div>
+    </section>
+
+    <main class="main">
+        <form method="POST" class="prompt-form" id="promptForm">
+            <input type="text" name="prompt" placeholder="Describe your magical scene..." required class="prompt-input">
+            <button type="submit" class="generate-button" id="generateBtn">Generate</button>
+
+        </form>
+        
+
+        {% if loading %}
+            <div class="loading">Generating your Ghibli masterpiece... ✨ Please wait.</div>
+        {% elif error %}
+            <div class="error">Sorry! We ran into an issue. Please try again later.</div>
+        {% elif generated_image %}
+            <div class="result">
+                <h2>Your Ghibli Image ✨</h2>
+                <img src="{{ url_for('images', filename=generated_image) }}" alt="Generated Image" class="generated-img">
+                <a href="{{ url_for('images', filename=generated_image) }}" download class="download-btn">Download Image</a>
+            </div>
+        {% endif %}
+    </main>
+
+    <footer class="footer">
+        <p>Made with 💖 by <a href="https://www.linkedin.com/in/anushka-mahajan-936142220/" target="_blank">Anushka Mahajan</a> @ <a href="https://www.linkedin.com/company/propero-ai/" target="_blank">Propero</a></p>
+    </footer>
+</body>
+<script>
+    document.getElementById("promptForm").addEventListener("submit", function () {
+        const btn = document.getElementById("generateBtn");
+        btn.innerText = "Generating...";
+        btn.disabled = true;
+        btn.classList.add("disabled");
+    });
+</script>
+
+</html>
