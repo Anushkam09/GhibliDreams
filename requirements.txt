@@ -1,7 +1,6 @@
 flask
-torch
-diffusers
-transformers
-accelerate
-Pillow
-uuid
+openai
+requests
+dotenv
+PIL
+io
