@@ -30,10 +30,9 @@ def home():
         except Exception as e:
             print(f"Error generating image: {e}")
             error = True
-        loading = False  # Set loading to False after image is generated
+        loading = False
 
     return render_template("index.html", loading=loading, error=error, generated_image=generated_image)
 
-# If you're using Flask's default run method (without any production server like gunicorn):
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
