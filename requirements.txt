@@ -2,5 +2,5 @@ flask
 openai
 requests
 dotenv
-PIL
+Pillow
 io
